@@ -1,0 +1,88 @@
+﻿@model List<BolsaTrabajo.MVC.Models.PostulacionViewModel>
+
+@{
+    ViewData["Title"] = "Todas las Postulaciones";
+}
+
+<h2>Todas las Postulaciones</h2>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">
+        No existen postulaciones registradas.
+    </div>
+}
+else
+{
+    <table class="table table-striped align-middle">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Plaza</th>
+                <th>Candidato</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @item.IdPostulacion
+                </td>
+
+                <td>
+                    @item.IdPlaza
+                </td>
+
+                <td>
+                    @item.IdCandidato
+                </td>
+
+                <td>
+                    @(item.FechaPostulacion.ToString(
+                        "dd/MM/yyyy HH:mm"))
+                </td>
+
+                <td>
+
+                    @switch (item.Estado)
+                    {
+                        case 1:
+                            <span class="badge bg-warning text-dark">
+                                En revisión
+                            </span>
+                            break;
+
+                        case 2:
+                            <span class="badge bg-success">
+                                Aprobado
+                            </span>
+                            break;
+
+                        case 3:
+                            <span class="badge bg-danger">
+                                Rechazado
+                            </span>
+                            break;
+                    }
+
+                </td>
+
+            </tr>
+        }
+
+        </tbody>
+
+    </table>
+}
+
+<a asp-action="Index"
+   class="btn btn-secondary">
+    Volver
+</a>

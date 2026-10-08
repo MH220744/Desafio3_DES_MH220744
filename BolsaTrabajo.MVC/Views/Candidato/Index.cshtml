@@ -1,0 +1,100 @@
+﻿@model List<BolsaTrabajo.MVC.Models.PlazaViewModel>
+
+@{
+    ViewData["Title"] = "Plazas disponibles";
+}
+
+<h2>Plazas disponibles</h2>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">
+        No hay plazas disponibles actualmente.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Institución</th>
+                <th>Descripción</th>
+                <th>Publicación</th>
+                <th>Cierre</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var plaza in Model)
+            {
+                <tr>
+                    <td>@plaza.Titulo</td>
+
+                    <td>
+                        @plaza.Institucion
+                    </td>
+
+                    <td>
+                        @plaza.Descripcion
+                    </td>
+
+                    <td>
+                        @plaza.FechaPublicacion
+                        .ToString("dd/MM/yyyy")
+                    </td>
+
+                    <td>
+                        @plaza.FechaCierre
+                        .ToString("dd/MM/yyyy")
+                    </td>
+
+                    <td>
+                        <form asp-action="Postularse"
+                              method="post">
+
+                            <input type="hidden"
+                                   name="idPlaza"
+                                   value="@plaza.IdPlaza" />
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Postularme
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-action="MisPostulaciones"
+   class="btn btn-secondary">
+    Mis postulaciones
+</a>
+
+<a asp-action="MisPostulaciones"
+   class="btn btn-secondary">
+    Mis postulaciones
+</a>
+
+<a asp-action="HojaDeVida"
+   class="btn btn-outline-primary">
+    Mi hoja de vida
+</a>

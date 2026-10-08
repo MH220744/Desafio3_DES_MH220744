@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Bolsa de Trabajo";
+}
+
+<div class="text-center mt-5">
+
+    <h1 class="display-4">
+        Bolsa de Trabajo del Sector Público
+    </h1>
+
+    <p class="lead mt-3">
+        Consulta plazas disponibles,
+        registra tu perfil profesional
+        y realiza tus postulaciones.
+    </p>
+
+    <div class="mt-4">
+
+        <a asp-controller="Cuenta"
+           asp-action="Login"
+           class="btn btn-primary btn-lg me-2">
+            Iniciar sesión
+        </a>
+
+        <a asp-controller="Cuenta"
+           asp-action="Registro"
+           class="btn btn-success btn-lg">
+            Registrarse
+        </a>
+
+    </div>
+
+</div>

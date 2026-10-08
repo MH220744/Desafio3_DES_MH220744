@@ -1,0 +1,121 @@
+﻿@model BolsaTrabajo.MVC.Models.HojaDeVidaViewModel
+
+@{
+    ViewData["Title"] = "Hoja de Vida";
+}
+
+<h2>Mi Hoja de Vida</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<form asp-action="HojaDeVida"
+      method="post"
+      enctype="multipart/form-data">
+
+    <input asp-for="IdCV"
+           type="hidden" />
+
+    <input asp-for="ArchivoCV"
+           type="hidden" />
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger mb-3">
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="FormacionAcademica"
+               class="form-label">
+            Formación académica
+        </label>
+
+        <textarea asp-for="FormacionAcademica"
+                  class="form-control"
+                  rows="4">
+        </textarea>
+
+        <span asp-validation-for="FormacionAcademica"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="ExperienciaLaboral"
+               class="form-label">
+            Experiencia laboral
+        </label>
+
+        <textarea asp-for="ExperienciaLaboral"
+                  class="form-control"
+                  rows="4">
+        </textarea>
+
+        <span asp-validation-for="ExperienciaLaboral"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Competencias"
+               class="form-label">
+            Competencias
+        </label>
+
+        <textarea asp-for="Competencias"
+                  class="form-control"
+                  rows="4">
+        </textarea>
+
+        <span asp-validation-for="Competencias"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="ArchivoPDF"
+               class="form-label">
+            Archivo CV en PDF
+        </label>
+
+        <input asp-for="ArchivoPDF"
+               type="file"
+               accept=".pdf,application/pdf"
+               class="form-control" />
+
+        <span asp-validation-for="ArchivoPDF"
+              class="text-danger">
+        </span>
+
+        <div class="form-text">
+            Solamente archivos PDF. Tamaño máximo: 5 MB.
+        </div>
+
+    </div>
+
+    <button type="submit"
+            class="btn btn-success">
+        Guardar hoja de vida
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Volver
+    </a>
+
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,69 @@
+﻿@model BolsaTrabajo.MVC.Models.PlazaFormViewModel
+
+@{
+    ViewData["Title"] = "Editar plaza";
+}
+
+<h2>Editar plaza</h2>
+
+<form asp-action="Editar"
+      method="post">
+
+    <input asp-for="IdPlaza"
+           type="hidden" />
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Titulo"
+               class="form-label"></label>
+
+        <input asp-for="Titulo"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Descripcion"
+               class="form-label"></label>
+
+        <textarea asp-for="Descripcion"
+                  class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Institucion"
+               class="form-label"></label>
+
+        <input asp-for="Institucion"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaPublicacion"
+               class="form-label"></label>
+
+        <input asp-for="FechaPublicacion"
+               type="datetime-local"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaCierre"
+               class="form-label"></label>
+
+        <input asp-for="FechaCierre"
+               type="datetime-local"
+               class="form-control" />
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Guardar cambios
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Volver
+    </a>
+</form>

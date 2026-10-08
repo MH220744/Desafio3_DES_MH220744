@@ -1,0 +1,251 @@
+﻿@model BolsaTrabajo.MVC.Models.AdministradorDashboardViewModel
+
+@{
+    ViewData["Title"] = "Administración";
+}
+
+<h2 class="mb-4">
+    Panel de Administración
+</h2>
+
+<a asp-action="Postulaciones"
+   class="btn btn-primary mb-3">
+    Ver todas las postulaciones
+</a>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<div class="row mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Usuarios</h5>
+
+                <h2>
+                    @Model.Resumen.TotalUsuarios
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Plazas</h5>
+
+                <h2>
+                    @Model.Resumen.TotalPlazas
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Plazas abiertas</h5>
+
+                <h2>
+                    @Model.Resumen.PlazasAbiertas
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5>Postulaciones</h5>
+
+                <h2>
+                    @Model.Resumen.TotalPostulaciones
+                </h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mb-5">
+
+    <div class="col-md-3">
+        <div class="card border-warning">
+            <div class="card-body">
+
+                <h6>
+                    En revisión
+                </h6>
+
+                <h3>
+                    @Model.Resumen.PostulacionesEnRevision
+                </h3>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-success">
+            <div class="card-body">
+
+                <h6>
+                    Aprobadas
+                </h6>
+
+                <h3>
+                    @Model.Resumen.PostulacionesAprobadas
+                </h3>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-danger">
+            <div class="card-body">
+
+                <h6>
+                    Rechazadas
+                </h6>
+
+                <h3>
+                    @Model.Resumen.PostulacionesRechazadas
+                </h3>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-secondary">
+            <div class="card-body">
+
+                <h6>
+                    Plazas cerradas
+                </h6>
+
+                <h3>
+                    @Model.Resumen.PlazasCerradas
+                </h3>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<h3 class="mt-4">
+    Gestión de usuarios
+</h3>
+
+@if (Model.Usuarios.Count == 0)
+{
+    <div class="alert alert-info">
+        No hay usuarios registrados.
+    </div>
+}
+else
+{
+    <table class="table table-striped align-middle">
+
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol actual</th>
+                <th>Cambiar rol</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <tr>
+
+                    <td>
+                        @usuario.NombreCompleto
+                    </td>
+
+                    <td>
+                        @usuario.Email
+                    </td>
+
+                    <td>
+
+                        @if (usuario.Roles.Count > 0)
+                        {
+                            @foreach (var rol in usuario.Roles)
+                            {
+                                <span class="badge bg-primary me-1">
+                                    @rol
+                                </span>
+                            }
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">
+                                Sin rol
+                            </span>
+                        }
+
+                    </td>
+
+                    <td>
+
+                        <form asp-action="CambiarRol"
+                              method="post"
+                              class="d-flex gap-2">
+
+                            <input type="hidden"
+                                   name="idUsuario"
+                                   value="@usuario.Id" />
+
+                            <select name="rol"
+                                    class="form-select form-select-sm">
+
+                                <option value="Candidato">
+                                    Candidato
+                                </option>
+
+                                <option value="Agente">
+                                    Agente
+                                </option>
+
+                                <option value="Administrador">
+                                    Administrador
+                                </option>
+
+                            </select>
+
+                            <button type="submit"
+                                    class="btn btn-warning btn-sm">
+                                Cambiar
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}

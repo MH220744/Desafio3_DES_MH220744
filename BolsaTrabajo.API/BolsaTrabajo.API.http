@@ -1,0 +1,6 @@
+@BolsaTrabajo.API_HostAddress = http://localhost:5104
+
+GET {{BolsaTrabajo.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

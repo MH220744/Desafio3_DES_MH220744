@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="BolsaTrabajo.API/BolsaTrabajo.API.csproj" />
+  <Project Path="BolsaTrabajo.BLL/BolsaTrabajo.BLL.csproj" />
+  <Project Path="BolsaTrabajo.Common/BolsaTrabajo.Common.csproj" />
+  <Project Path="BolsaTrabajo.DAL/BolsaTrabajo.DAL.csproj" />
+  <Project Path="BolsaTrabajo.Entities/BolsaTrabajo.Entities.csproj" />
+  <Project Path="BolsaTrabajo.MVC/BolsaTrabajo.MVC.csproj" />
+  <Project Path="BolsaTrabajo.Tests/BolsaTrabajo.Tests.csproj" />
+</Solution>
